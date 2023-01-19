@@ -6,7 +6,9 @@ const {
   getOrders,
   filter,
   getVendorOrders,
-  updateOrder, updateDeliveryOrder, updatePayOrder, checkoutSession,
+  updateOrder,
+  updateDeliveryOrder,
+  updatePayOrder,
 } = require("../services/orderServices");
 const { auth, permissions } = require("../services/auth/authService");
 

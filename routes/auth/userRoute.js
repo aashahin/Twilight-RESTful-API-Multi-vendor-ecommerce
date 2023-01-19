@@ -23,7 +23,10 @@ const {
   updateProfile,
   addProductFavorite,
   getFavorites,
-  removeProductFavorite, removeAddress, addAddress, getAddresses,
+  removeProductFavorite,
+  removeAddress,
+  addAddress,
+  getAddresses,
 } = require("../../services/auth/userService");
 const { auth, permissions } = require("../../services/auth/authService");
 

@@ -30,7 +30,7 @@ router
 // Review
 router
   .route("/:id")
-  .get(setProductToId,getViewValidator, getReview)
+  .get(setProductToId, getViewValidator, getReview)
   .put(
     auth,
     permissions("user"),

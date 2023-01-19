@@ -47,14 +47,14 @@ const userSchema = new mongoose.Schema(
         ref: "Products",
       },
     ],
-      addresses:{
-          id: {type: mongoose.Schema.Types.ObjectId},
-          details:String,
-          alias:String,
-          city: String,
-          phone: Number,
-          postalCode: Number,
-      }
+    addresses: {
+      id: { type: mongoose.Schema.Types.ObjectId },
+      details: String,
+      alias: String,
+      city: String,
+      phone: Number,
+      postalCode: Number,
+    },
   },
   { timestamps: true }
 );

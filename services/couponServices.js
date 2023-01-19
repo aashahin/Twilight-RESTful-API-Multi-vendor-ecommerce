@@ -13,7 +13,7 @@ const {
  * @route   POST   /api/v1/coupons
  * @access  Auth(Admin-Vendor)
  * */
-exports.createCoupon = createOne(couponModel,false,false,true);
+exports.createCoupon = createOne(couponModel, false, false, true);
 // GET
 /*
  * @desc   List of Coupons

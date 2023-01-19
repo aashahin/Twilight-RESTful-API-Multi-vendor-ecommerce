@@ -61,7 +61,7 @@ exports.getProducts = getAll(productModel, true);
  * @route  GET /api/v1/products/vendor
  * @access Auth/Vendor
  * */
-exports.getVendorProducts = getAll(productModel, false,true)
+exports.getVendorProducts = getAll(productModel, false, true);
 
 /*
  *  @desc    Get Specific Product By id

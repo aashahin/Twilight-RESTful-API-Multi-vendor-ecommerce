@@ -12,7 +12,7 @@ const asyncHandler = require("express-async-handler");
 const apiErrors = require("../../utils/apiErrors");
 const bcrypt = require("bcryptjs");
 const { createToken } = require("../../utils/auth/token");
-const {v4: uuidv4} = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 exports.uploadImages = uploadSingleImage("profileImage");
 exports.processImage = expressAsyncHandler(async (req, res, next) => {
@@ -186,7 +186,7 @@ exports.getFavorites = expressAsyncHandler(async (req, res, next) => {
  * @access  Auth
  * */
 exports.removeProductFavorite = expressAsyncHandler(async (req, res, next) => {
-   await UserModel.findByIdAndUpdate(
+  await UserModel.findByIdAndUpdate(
     req.user._id,
     {
       $pull: { favorites: req.params.id },
@@ -207,14 +207,13 @@ exports.addAddress = expressAsyncHandler(async (req, res, next) => {
     req.user._id,
     {
       $set: {
-          addresses: {
-              details: req.body.details,
-              alias: req.body.alias,
-              city: req.body.city,
-              phone: req.body.phone,
-              postalCode: req.body.postalCode,
-          }
-
+        addresses: {
+          details: req.body.details,
+          alias: req.body.alias,
+          city: req.body.city,
+          phone: req.body.phone,
+          postalCode: req.body.postalCode,
+        },
       },
     },
     { new: true }
@@ -245,7 +244,7 @@ exports.removeAddress = expressAsyncHandler(async (req, res, next) => {
   await UserModel.findByIdAndUpdate(
     req.user._id,
     {
-      $pull: { addresses: {_id: req.params.id} },
+      $pull: { addresses: { _id: req.params.id } },
     },
     { new: true }
   );

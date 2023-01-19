@@ -5,7 +5,8 @@ const crypto = require("crypto");
 const { UserModel } = require("../../models/auth/userModel");
 const ApiErrors = require("../../utils/apiErrors");
 const { sendEmail, templateMail } = require("../../utils/email");
-const {createToken} = require("../../utils/auth/token");
+const { createToken } = require("../../utils/auth/token");
+const {sanitizeUser} = require("../../utils/sanitize");
 
 // POST
 /*
@@ -20,7 +21,7 @@ exports.signup = expressAsyncHandler(async (req, res) => {
     password: req.body.password,
   });
   const token = createToken(user._id);
-  res.status(201).json({ data: user, token });
+  res.status(201).json({ data: sanitizeUser(user), token });
 });
 
 /*
@@ -34,7 +35,7 @@ exports.login = expressAsyncHandler(async (req, res, next) => {
     return next(new ApiErrors("Incorrect email or password", 401));
   }
   const token = createToken(user._id);
-  res.status(200).json({ data: user, token });
+  res.status(200).json({ data: sanitizeUser(user), token });
 });
 
 // Auth

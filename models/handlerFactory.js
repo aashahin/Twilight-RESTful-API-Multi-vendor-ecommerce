@@ -112,7 +112,9 @@ exports.getAll = (model, products, vendor, cart) => {
         if (item.cartItems[0].vendor === req.user._id.toString()) {
           filter = { user: req.user._id };
         }
-        const product = await item.cartItems.find((item) => item.vendor === String(req.user._id));
+        const product = await item.cartItems.find(
+          (item) => item.vendor === String(req.user._id)
+        );
         if (product) {
           document.push(product);
         }
@@ -132,11 +134,11 @@ exports.getAll = (model, products, vendor, cart) => {
         .json({ result: document.length, pagination, data: document });
     }
     apiFeatures = new ApiFeatures(model.find(filter), req.query)
-        .sort()
-        .paginate(count)
-        .limitFields()
-        .search()
-        .select();
+      .sort()
+      .paginate(count)
+      .limitFields()
+      .search()
+      .select();
     const { pagination, mongooseQuery } = apiFeatures;
     const document = await mongooseQuery;
     return res
@@ -177,9 +179,7 @@ exports.updateOne = (model, msgErr, reviews) =>
 exports.deleteOne = (model, msgErr, msgSucc) =>
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const document = await model.findByIdAndDelete(
-      id.match(/^[0-9a-fA-F]{24}$/)
-    );
+    const document = await model.findByIdAndDelete(id);
     if (!document) {
       return next(new apiErrors(`${msgErr}${req.params.id}`, 404));
     } else {

@@ -7,7 +7,8 @@ const express = require("express"),
     updateProduct,
     deleteProduct,
     processImages,
-    uploadImages, getVendorProducts,
+    uploadImages,
+    getVendorProducts,
   } = require("../services/productServices"),
   {
     createProductValidator,
@@ -15,12 +16,12 @@ const express = require("express"),
     updateProductValidator,
     deleteProductValidator,
   } = require("../utils/validator/productValidator"),
-    reviewRoute = require("./reviewRoute");
+  reviewRoute = require("./reviewRoute");
 const { auth, permissions } = require("../services/auth/authService");
 
 // Vendor
-router.route("/vendor").get(auth,permissions("vendor"),getVendorProducts)
-router.use("/:productId/reviews",reviewRoute)
+router.route("/vendor").get(auth, permissions("vendor"), getVendorProducts);
+router.use("/:productId/reviews", reviewRoute);
 
 router
   .route("/")
@@ -44,5 +45,10 @@ router
     updateProductValidator,
     updateProduct
   )
-  .delete(auth, permissions("admin","vendor"), deleteProductValidator, deleteProduct);
+  .delete(
+    auth,
+    permissions("admin", "vendor"),
+    deleteProductValidator,
+    deleteProduct
+  );
 module.exports = router;

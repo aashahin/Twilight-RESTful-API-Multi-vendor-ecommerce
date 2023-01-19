@@ -1,3 +1,5 @@
+// noinspection JSCheckFunctionSignatures
+
 class ApiErrors extends Error {
   constructor(message, statusCode) {
     super(message);

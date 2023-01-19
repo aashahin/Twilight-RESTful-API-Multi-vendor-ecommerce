@@ -1,5 +1,3 @@
-const compression = require("compression");
-const cors = require('cors')
 const userRoute = require("./auth/userRoute"),
   authRoute = require("./auth/authRoute"),
   categoryRoute = require("./categoryRoute"),
@@ -10,13 +8,7 @@ const userRoute = require("./auth/userRoute"),
   couponRoute = require("./couponRoute"),
   cartRoute = require("./cartRoute"),
   orderRoute = require("./orderRoute");
-
-const corsOptions = {
-  origin: process.env.BASE_URL,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 function routes(app) {
-  app.use(compression(),cors(corsOptions));
   app.use("/api/v1/users", userRoute);
   app.use("/api/v1/auth/", authRoute);
   app.use("/api/v1/categories", categoryRoute);

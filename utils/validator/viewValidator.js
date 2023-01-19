@@ -37,17 +37,16 @@ exports.updateViewValidator = [
   check("id")
     .isMongoId()
     .withMessage("Invalid View Id.")
-      .custom(async(val,{req})=>{
-        return await Review.findById(val).then((succ)=>{
-          if(!succ){
-            return Promise.reject(new Error(`There is no review with id ${val}`))
-          }
-          if(succ.user._id.toString() !== req.user._id.toString()){
-            return Promise.reject(new Error("Access Denied!"))
-          }
-        })
-      })
-  ,
+    .custom(async (val, { req }) => {
+      return await Review.findById(val).then((succ) => {
+        if (!succ) {
+          return Promise.reject(new Error(`There is no review with id ${val}`));
+        }
+        if (succ.user._id.toString() !== req.user._id.toString()) {
+          return Promise.reject(new Error("Access Denied!"));
+        }
+      });
+    }),
   check("content")
     .optional()
     .isLength({ min: 2 })
@@ -62,19 +61,19 @@ exports.updateViewValidator = [
 ];
 exports.deleteViewValidator = [
   check("id")
-      .isMongoId()
-      .withMessage("Invalid View Id.")
-      .custom(async(val,{req})=>{
-        return await Review.findById(val).then((succ)=>{
-          if(!succ){
-            return Promise.reject(new Error(`There is no review with id ${val}`))
+    .isMongoId()
+    .withMessage("Invalid View Id.")
+    .custom(async (val, { req }) => {
+      return await Review.findById(val).then((succ) => {
+        if (!succ) {
+          return Promise.reject(new Error(`There is no review with id ${val}`));
+        }
+        if (req.user.role === "user") {
+          if (succ.user._id.toString() !== req.user._id.toString()) {
+            return Promise.reject(new Error("Access Denied!"));
           }
-          if(req.user.role === "user"){
-            if(succ.user._id.toString() !== req.user._id.toString()){
-              return Promise.reject(new Error("Access Denied!"))
-            }
-          }
-        })
-      }),
+        }
+      });
+    }),
   validatorError,
 ];

@@ -9,32 +9,32 @@ const Review = require("../models/reviewModel"),
 
 // Nested Route
 /*
-* GET / api/v1/products/productId/reviews
-* */
-exports.createFilterObject = (req,res,next)=>{
-    let filterObject = {};
-    if(req.params.productId){
-        filterObject = {product : req.params.productId}
-    }
-    req.filterObject = filterObject;
-    next();
-}
+ * GET / api/v1/products/productId/reviews
+ * */
+exports.createFilterObject = (req, res, next) => {
+  let filterObject = {};
+  if (req.params.productId) {
+    filterObject = { product: req.params.productId };
+  }
+  req.filterObject = filterObject;
+  next();
+};
 /*
-* POST /api/v1/products/productId/reviews
-*  */
-exports.setProductToId = (req,res,next)=>{
-    if(!req.body.product){
-        req.body.product = req.params.productId;
-    }
-    next();
-}
+ * POST /api/v1/products/productId/reviews
+ *  */
+exports.setProductToId = (req, res, next) => {
+  if (!req.body.product) {
+    req.body.product = req.params.productId;
+  }
+  next();
+};
 // POST
 /*
  * @desc    Create Review
  * @route   POST   /api/v1/reviews
  * @access  Private/Auth(User)
  * */
-exports.createReview = createOne(Review,true);
+exports.createReview = createOne(Review, true);
 // GET
 /*
  * @desc   List of Review
@@ -56,7 +56,7 @@ exports.getReview = getOne(Review, `No Review for this id: `);
  *  @route  PUT /api/v1/reviews/:id
  *  @access Private/Auth(User)
  * */
-exports.updateReview = updateOne(Review, `No Review for this id: `,true);
+exports.updateReview = updateOne(Review, `No Review for this id: `, true);
 
 // DELETE
 /*

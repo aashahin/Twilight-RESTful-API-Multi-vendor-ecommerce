@@ -30,7 +30,8 @@ exports.createCashOrder = expressAsyncHandler(async (req, res, next) => {
   }
 
   // Get cart price and set total + tax + shopping price for order
-  const totalOrderPrice = cart.totalAfterDiscount !== undefined
+  const totalOrderPrice =
+    cart.totalAfterDiscount !== undefined
       ? cart.totalAfterDiscount
       : cart.totalPrice; //cartPrice + taxPrice + shoppingPrice
   // Create Order

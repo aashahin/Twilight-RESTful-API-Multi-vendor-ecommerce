@@ -141,8 +141,8 @@ exports.changePasswordValidator = [
   validatorError,
 ];
 exports.deleteUserValidator = [
-    check("id").isMongoId().withMessage("Invalid User Id."),
-    validatorError,
+  check("id").isMongoId().withMessage("Invalid User Id."),
+  validatorError,
 ];
 
 // User
@@ -173,34 +173,33 @@ exports.changeUserPasswordValidator = [
     }),
   validatorError,
 ];
-exports.updateLoggedUserValidator =  [
-    check("name")
-        .optional()
-        .isLength({ max: 50 })
-        .withMessage("Maximum: 50")
-        .custom((val, { req }) => {
-            req.body.slug = slugify(val);
-            return true;
-        }),
-    check("email")
-        .optional()
-        .isLength({ max: 50 })
-        .withMessage("Maximum: 50")
-        .isEmail()
-        .withMessage("Enter an Email is valid")
-        .custom((email, { req }) =>
-            UserModel.findOne({ email }).then((user) => {
-                if (user) {
-                    return Promise.reject(new Error("This Email already exists"));
-                }
-            })
-        ),
-    check("phone")
-        .optional()
-        .isLength({ min: 6 })
-        .withMessage("Minimum: 6")
-        .isLength({ max: 50 })
-        .withMessage("Maximum: 50"),
-    validatorError,
+exports.updateLoggedUserValidator = [
+  check("name")
+    .optional()
+    .isLength({ max: 50 })
+    .withMessage("Maximum: 50")
+    .custom((val, { req }) => {
+      req.body.slug = slugify(val);
+      return true;
+    }),
+  check("email")
+    .optional()
+    .isLength({ max: 50 })
+    .withMessage("Maximum: 50")
+    .isEmail()
+    .withMessage("Enter an Email is valid")
+    .custom((email, { req }) =>
+      UserModel.findOne({ email }).then((user) => {
+        if (user) {
+          return Promise.reject(new Error("This Email already exists"));
+        }
+      })
+    ),
+  check("phone")
+    .optional()
+    .isLength({ min: 6 })
+    .withMessage("Minimum: 6")
+    .isLength({ max: 50 })
+    .withMessage("Maximum: 50"),
+  validatorError,
 ];
-
