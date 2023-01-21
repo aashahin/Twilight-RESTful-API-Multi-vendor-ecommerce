@@ -8,7 +8,8 @@ const express = require("express"),
   hpp = require("hpp"),
   xssClean = require("xss-clean"),
   mongoSanitize = require("express-mongo-sanitize"),
-  { dbConnection } = require("./config/database"),
+  helmet = require("helmet"),
+{ dbConnection } = require("./config/database"),
   { globalErrors } = require("./middlewares/globalErrors"),
   ApiErrors = require("./utils/apiErrors"),
   routes = require("./routes");
@@ -47,6 +48,8 @@ const limiterAuth = rateLimit({
 app.use(express.json({ limit: "50kb" }));
 // Mongo Sanitize
 app.use(mongoSanitize());
+// Helmet
+app.use(helmet());
 // XSS Clean
 app.use(xssClean());
 // Limit each IP to limit requests
