@@ -1,103 +1,145 @@
-# Twilight - Nodejs Multi-Vendor ecommerce cms
+# **Twilight - Nodejs Multi-Vendor ecommerce cms**
 
-## Getting started
+## Tech Stack
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**Server:** Node, Express, MongoDB, Mongoose, JWT
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+**Modules:** nodemailer, bcryptjs,express-validator,multer,sharp,helmet,hpp,compression,hpp,toobusy-js,xss-clean
 
-## Add your files
+# API FEATURES
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- Authentication & Authorization
+- Post CRUD operations
+- Categories, SubCategories, Brands, Products, Users, Logged Users
+- Coupons, Addresses, Cart, Order
+- Reviews functionality
+- Search (fields,price,sort,reviews,keyword,filtering)
+- Multi Vendors
+- Orders for each seller are shown separately
+- Local Storage
+- improve images
+- Log out if the password is changed
+- Permissions (Admin,vendor,user)
+- Wishlist && vendor profile
+- Deactive User
+- Verify Rest Code on email
+- Forget Password
+- Coupons work on the products of its owner
+- More to explore!
 
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/abshahin/twilight-nodejs-multi-vendor-ecommerce-cms.git
-git branch -M main
-git push -uf origin main
+
+Go to the project directory
+
+```bash
+  cd my-project
 ```
 
-## Integrate with your tools
+Install dependencies
 
-- [ ] [Set up project integrations](https://gitlab.com/abshahin/twilight-nodejs-multi-vendor-ecommerce-cms/-/settings/integrations)
+```bash
+  npm install
+```
 
-## Collaborate with your team
+Start the server
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+```bash
+  npm run server
+```
 
-## Test and Deploy
+## Environment Variables
 
-Use the built-in continuous integration in GitLab.
+To run this project, you will need to add the following environment variables to your config.env file
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+# Server Settings
+```
+PORT=5000
 
----
+NODE_ENV=development
 
-# Editing this README
+BASE_URL=https://example.com
+```
+# Database
+```
+MONGO_URL=mongodb://localhost:0000/ecommerces
+```
+# JWT
+```
+SECRET_KEY='as#ewronh$%@65*-'
+EXPIRESIN=90d
+```
+# Email
+## -Settings
+```
+HOST_MAIL="smtp.example.com"
+PORT_MAIL=465
+SECURE_MAIL=true
+USER_MAIL="support@example.com"
+PASSWORD_MAIL="password"
+```
+## -Message
+```
+ FROM_MAIL="Shaheen Team <abdelrahman@shaheen.com>"
+```
+# API Authentication
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Some endpoints may require authentication for example. To create a create/delete/update product, you need to register your API client and obtain an access token.
 
-## Suggestions for a good README
+The endpoints that require authentication expect a bearer token sent in the `Authorization header`.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+**Example**:
 
-## Name
+`Authorization: Bearer YOUR TOKEN`
 
-Choose a self-explaining name for your project.
+## Register a new API client
 
-## Description
+```http
+POST /api/v1/auth/signup
+```
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+The request body needs to be in JSON format.
 
-## Badges
+# **Examples**
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## **User Login**
 
-## Visuals
+```http
+POST /api/v1/auth/login
+```
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+| Parameter        | Type     | Description   | Required |
+| :--------------- | :------- | :------------ | :------- |
+| `authentication` | `string` | Your token    | no       |
+| `email`          | `string` | Your email    | yes      |
+| `password`       | `string` | Your password | yes      |
 
-## Installation
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## **get my info**
 
-## Usage
+```http
+GET /api/v1/users/get-me
+```
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+| Parameter        | Type     | Description | Required |
+| :--------------- | :------- | :---------- | :------- |
+| `authentication` | `string` | Your token  | yes      |
 
-## Support
+## **Get all users**
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```http
+GET /api/v1/users/
+```
 
-## Roadmap
+| Parameter        | Type     | Description | Required |
+| :--------------- | :------- | :---------- | :------- |
+| `authentication` | `string` | Your token  | yes       |
 
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## **[View on Postman](https://www.postman.com/orbital-module-geologist-396425/workspace/myapis/collection/19652608-30abf040-9f6d-45f8-b45b-9bdd6a7a4a56?action=share&creator=19652608)**
 
-## Contributing
-
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-
-Show your appreciation to those who have contributed to the project.
-
-## License
-
-For open source projects, say how it is licensed.
-
-## Project status
-
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+[![Logo](https://pub-ebc3292441104a07b54e254192a1b246.r2.dev/icons8-postman-is-the-only-complete-api-development-environment-96.png)](https://pub-ebc3292441104a07b54e254192a1b246.r2.dev/icons8-postman-is-the-only-complete-api-development-environment-96.png)
