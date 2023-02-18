@@ -142,4 +142,4 @@ GET /api/v1/users/
 
 ## **[View on Postman](https://www.postman.com/orbital-module-geologist-396425/workspace/myapis/collection/19652608-30abf040-9f6d-45f8-b45b-9bdd6a7a4a56?action=share&creator=19652608)**
 
-[![Logo](https://pub-ebc3292441104a07b54e254192a1b246.r2.dev/icons8-postman-is-the-only-complete-api-development-environment-96.png)](https://pub-ebc3292441104a07b54e254192a1b246.r2.dev/icons8-postman-is-the-only-complete-api-development-environment-96.png)
+[![Logo](https://pub-ebc3292441104a07b54e254192a1b246.r2.dev/icons8-postman-is-the-only-complete-api-development-environment-96.png)](https://www.postman.com/orbital-module-geologist-396425/workspace/myapis/collection/19652608-30abf040-9f6d-45f8-b45b-9bdd6a7a4a56?action=share&creator=19652608)
