@@ -1,4 +1,4 @@
-# **Twilight - Nodejs Multi-Vendor ecommerce cms**
+# **Twilight - RESTful API Multi-Vendor ecommerce**
 
 ## Tech Stack
 
